@@ -54,6 +54,7 @@ class Daily extends Component {
     }
 
     render() {
+        const submitted=this.props.submitted
         /* const clearButton =
             this.state.selectedLegend.length > 0 ? <Button icon="cross" minimal={true} onClick={this.handleClear} /> : undefined;*/
         const shortTermChartColorStorage = [
@@ -64,8 +65,12 @@ class Daily extends Component {
             const color = `#${randHex.toString(16)}`;
             const color2 = `#${Math.floor(randHex - 5000).toString(16)}`;
             const color3 = `#${Math.floor(randHex - 8000).toString(16)}`;
+            const squatData= this.props.dataset.map((data)=>{console.log('?????????___',data);return({x:data.timestamp,y:data.data.squat})});
+            const benchData= this.props.dataset.map((data)=>{return({x:data.timestamp,y:data.data.bench})});
+            const deadliftData= this.props.dataset.map((data)=>{return({x:data.timestamp,y:data.data.deadlift})});
             const testData = this.props.dataset;
             console.log('WHAT IS MY TEST DATA',testData);
+
             const dataset2 = [];
             testData.map((i, ix) => {
                 console.log(i,'???');
@@ -83,7 +88,7 @@ class Daily extends Component {
                             fill: false,
                             showLine: true,
                             hidden: false,
-                            data:i.data.squat
+                            data:squatData
                         },
                         {
                             label: `Bench`,
@@ -95,7 +100,7 @@ class Daily extends Component {
                             fill: false,
                             showLine: true,
                             hidden: false,
-                            data:i.data.bench
+                            data:benchData
                         },
                         {
                             label: `Deadlift`,
@@ -107,13 +112,13 @@ class Daily extends Component {
                             fill: false,
                             showLine: true,
                             hidden: false,
-                            data:i.data.deadlift
+                            data:deadliftData
                         },
                     )
                 );
             });
             const chartConfig = {
-                labels: this.props.dataset.length>=1?[moment(this.props.dataset[0].timestamp).toISOString(),moment(this.props.dataset[this.props.dataset.length-1].timestamp).toISOString()]:[new Date(),new Date()],
+                labels: this.props.dataset.length>=1?[moment(this.props.dataset[0].timestamp).toISOString(),moment(this.props.dataset[this.props.dataset.length-1].timestamp).toISOString()]:[new Date().toISOString(),moment().add('30','day').toISOString()],
                 datasets: dataset2,
             };
 
@@ -154,7 +159,7 @@ class Daily extends Component {
                                                 label(tooltipItems, data) {
                                                     const averageDataSetIndex = tooltipItems.datasetIndex;
                                                     console.log(data,tooltipItems);
-                                                    return `${data.datasets[tooltipItems.datasetIndex].label}: ${data.datasets[tooltipItems.datasetIndex].data}`;
+                                                    return `${data.datasets[tooltipItems.datasetIndex].label}: ${tooltipItems.yLabel} kg `;
                                                 },
                                             },
                                         },

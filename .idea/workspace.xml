@@ -2,19 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1010c445-af05-41a7-a706-42e5067c958e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/graph/chartwrapper.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/graph/daily.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/graph/search.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/graph/spinner.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/StrongFactory.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StrongFactory.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/StrongSurvey.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StrongSurvey.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/stores/Stores.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/Stores.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/stores/generalStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/generalStore.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/graph/daily.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/graph/daily.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -83,7 +75,7 @@
       <option name="presentableId" value="Default" />
       <updated>1611114599152</updated>
       <workItem from="1611114600255" duration="4229000" />
-      <workItem from="1611209631313" duration="6113000" />
+      <workItem from="1611209631313" duration="7286000" />
     </task>
     <servers />
   </component>

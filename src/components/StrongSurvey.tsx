@@ -42,18 +42,37 @@ class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
             deadlift:e.target.value
         });
     }
-    submitDataToCookies(data){
+/*    submitDataToCookies(data){
         const prevData = cookie.get('data')
         console.log('prevData',typeof prevData,prevData,data);
         const newData={data:{squat:parseInt(data.squat),deadlift:parseInt(data.deadlift),bench:parseInt(data.bench)},timestamp:moment().format('LL')};
         if(typeof prevData !== 'undefined'){
             const prevDataSet = JSON.parse(prevData)
             prevDataSet.push(newData);
+            console.log('_______',prevDataSet);
             rootStore.generalStore.setData(prevDataSet);
+            cookie.set('data',prevDataSet);
+
         }
         else{
             cookie.set('data',[newData]);
             rootStore.generalStore.setData([newData]);
+        }
+
+    }*/
+    submitDataToCookies(data){
+        this.props.setSubmitted(true);
+        const prevData = cookie.get('data')
+        console.log('prevData',typeof prevData,prevData,data);
+        if(typeof prevData !== 'undefined'){
+            const prevDataSet = JSON.parse(prevData)
+            prevDataSet.push({data:{squat:data.squat,deadlift:data.deadlift,bench:data.bench},timestamp:moment().format('LL')});
+            rootStore.generalStore.setData(prevDataSet);
+            cookie.set('data',prevDataSet);
+        }
+        else{
+            cookie.set('data',[{data:data,timestamp:moment().format('LL')}]);
+            rootStore.generalStore.setData([{data:data,timestamp:moment().format('LL')}]);
         }
 
     }
@@ -67,8 +86,10 @@ class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
             case 'squat':
                 return <div style={{width: '100%', display: 'block', marginTop: 50}}>
                     <input
+                        max={400}
+                        min={0}
                         style={{display: 'block'}}
-                        type="text"
+                        type="number"
                         name="squat"
                         value={this.state.squat}
                         placeholder="Squat"
@@ -89,8 +110,10 @@ class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
             case 'bench':
                 return(<div style={{width: '100%', display: 'block', marginTop: 50}}>
                     <input
+                        max={400}
+                        min={0}
                         style={{display: 'block'}}
-                        type="text"
+                        type="number"
                         name="bench"
                         value={this.state.bench}
                         placeholder="Bench"
@@ -111,8 +134,10 @@ class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
             case 'deadlift':
                 return(<div style={{width: '100%', display: 'block', marginTop: 50}}>
                     <input
+                        max={400}
+                        min={0}
                         style={{display: 'block'}}
-                        type="text"
+                        type="number"
                         name="deadlift"
                         value={this.state.deadlift}
                         placeholder="Deadlift"
@@ -154,7 +179,7 @@ class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
 
                         {rootStore.generalStore.data.length>=1?rootStore.generalStore.data.map((data)=>{
                             console.log('...',data);
-                            return(<div style={{backgroundColor:'pink',color:'white',width:400,display:'flex',justifyContent:'center'}}><div>{data.timestamp}</div><div style={{marginLeft:20}}>{data.data.squat}</div></div>)
+                            return(<div style={{backgroundColor:'pink',color:'white',width:400,display:'flex',justifyContent:'center'}}><div>{data.timestamp}</div><div style={{marginLeft:20}}>S{data.data.squat}</div><div style={{marginLeft:20}}>B{data.data.bench}</div><div style={{marginLeft:20}}>D{data.data.deadlift}</div></div>)
                         }):null}
                         <br />
                         {this.renderActiveQuestion()}
@@ -163,13 +188,6 @@ class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
 
                     </div>
                     <br />
-                    <div>
-                        <section className="dashboard content container">
-                            <div className="wrapper">
-                                <LineGraph dataset={rootStore.generalStore.data} />
-                            </div>
-                        </section>
-                    </div>
 
                 </div>
             </div>
