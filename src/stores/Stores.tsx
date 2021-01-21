@@ -12,7 +12,6 @@ export class RootStore {
 
     constructor() {
         this.generalStore = new generalStore(this);
-        hydrate('auth', this.generalStore);
     }
 
 }

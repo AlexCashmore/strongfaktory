@@ -1,7 +1,12 @@
 import * as React from 'react';
 import { observer } from 'mobx-react';
+import LineGraph from "./graph/daily.js";
+import cookie from 'js-cookie';
+
 
 import {toJS} from "mobx";
+import moment from "moment";
+import {rootStore} from "../stores/Stores";
 
 export interface IHeaderState {
     squat:any;
@@ -36,6 +41,25 @@ class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
         this.setState({
             deadlift:e.target.value
         });
+    }
+    submitDataToCookies(data){
+        const prevData = cookie.get('data')
+        console.log('prevData',typeof prevData,prevData,data);
+        const newData={data:{squat:parseInt(data.squat),deadlift:parseInt(data.deadlift),bench:parseInt(data.bench)},timestamp:moment().format('LL')};
+        if(typeof prevData !== 'undefined'){
+            const prevDataSet = JSON.parse(prevData)
+            prevDataSet.push(newData);
+            rootStore.generalStore.setData(prevDataSet);
+        }
+        else{
+            cookie.set('data',[newData]);
+            rootStore.generalStore.setData([newData]);
+        }
+
+    }
+    removeData(){
+        cookie.remove('data')
+        window.location.reload();
     }
 
     renderActiveQuestion(){
@@ -99,6 +123,7 @@ class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
                         onKeyPress={(event) => {
                             if (event.key === 'Enter') {
                                 this.setState({activeQuestion: null})
+                                this.submitDataToCookies(this.state)
 
                             }
                         }}
@@ -121,13 +146,29 @@ class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
     }
 
     public render() {
-        return (<div style={{height:'100%',width:'100%',backgroundColor:'#f5f4fa'}}>
+        console.log(rootStore.generalStore.data)
+        return (<div style={{height:'100%',width:'100%',backgroundColor:"transparent"}}>
                 <div style={{display:'flex',justifyContent:'center'}}>
-                    <div style={{width:400,margin:0,height:900,backgroundColor:'#f7e1c7',borderRadius:12}}>
+                    <div style={{width:400,margin:0,height:400,backgroundColor:'#f7e1c7',borderRadius:12,marginBottom:50}}>
                         <p style={{height:40}}>Log your more recent training session</p>
+
+                        {rootStore.generalStore.data.length>=1?rootStore.generalStore.data.map((data)=>{
+                            console.log('...',data);
+                            return(<div style={{backgroundColor:'pink',color:'white',width:400,display:'flex',justifyContent:'center'}}><div>{data.timestamp}</div><div style={{marginLeft:20}}>{data.data.squat}</div></div>)
+                        }):null}
                         <br />
                         {this.renderActiveQuestion()}
+                        <div style={{display:'flex',justifyContent:'center'}}> <div style={{width:200,backgroundColor:'#fff',border:'2px solid #f5f4fa',color:'#f5f4fa',cursor:'pointer',borderRadius:8,height:60,fontSize:28,lineHeight:'32px',paddingTop:10}} onClick={()=>{this.removeData()}}>Reset</div></div>
 
+
+                    </div>
+                    <br />
+                    <div>
+                        <section className="dashboard content container">
+                            <div className="wrapper">
+                                <LineGraph dataset={rootStore.generalStore.data} />
+                            </div>
+                        </section>
                     </div>
 
                 </div>
