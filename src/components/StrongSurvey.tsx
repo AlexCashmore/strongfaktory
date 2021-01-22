@@ -185,7 +185,7 @@ class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
 
                 </div>;
             case 'bench':
-                return(<div className="fadedshort"  style={{width: '100%', display: 'block', marginTop: 50}}>
+                return(<div style={{width: '100%', display: 'block', marginTop: 50}}>
                     <input
                         autoFocus={true}
                         max={400}
@@ -196,7 +196,7 @@ class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
                         value={this.state.bench}
 
                         placeholder="Bench"
-                        className="signup-form"
+                        className="signup-form fadedshort"
                         onChange={(e) => {
                             this.handleSurveyChangeBench(e)
                         }}
@@ -218,7 +218,7 @@ class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
                         disabled={this.state.loggingMax&&this.state.benchReps}
                         value={this.state.reps||this.state.benchReps}
                         placeholder="x reps"
-                        className="signup-form"
+                        className="signup-form fadedshort"
                         onChange={(e) => {
                             this.handleSurveyChangeReps(e,'bench')
                         }}
@@ -244,7 +244,7 @@ class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
                         name="deadlift"
                         value={this.state.deadlift}
                         placeholder="Deadlift"
-                        className="signup-form"
+                        className="signup-form fadedshort"
                         onChange={(e) => {
                             this.handleSurveyChangeDeadlift(e)
                         }}
@@ -266,7 +266,7 @@ class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
                         disabled={this.state.loggingMax&&this.state.deadliftReps}
                         value={this.state.reps||this.state.deadliftReps}
                         placeholder="x reps"
-                        className="signup-form"
+                        className="signup-form fadedshort"
                         onChange={(e) => {
                             this.handleSurveyChangeReps(e,'deadlift')
                         }}
@@ -284,7 +284,7 @@ class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
                 if(this.state.squatReps==1&&this.state.benchReps==1&&this.state.deadliftReps==1){
                     (<div className="fadedshort" ><h3>Your one rep max has been logged. Please use the below training max</h3>
                         <br/>
-                        <div>
+                        <div className="fadedshort">
                             {this.state.squat&&<>Squat: {this.state.squat}</>}
                             <br />
                             {this.state.squat&&<>Training Max: {Math.ceil(0.9*this.state.squat)}</>}
@@ -301,38 +301,26 @@ class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
 
                         </div></div>)
                 }
-                return(<div className="fadedshort" ><h3>Your work has been logged. Thank you.</h3>
-                <br/>
-                <div>
-                    {this.state.squat&&<>Squat: {this.state.squat} x {this.state.squatReps}</>}
-                    <br />
-                    Next goal: {this.calculateNextGoal(parseFloat(this.state.squat),this.state.squatReps)}
-                    <br />
-                    {this.state.bench&&<>Bench: {this.state.bench} x {this.state.benchReps}</>}
-                    <br />
-                    Next goal: {this.calculateNextGoal(parseFloat(this.state.bench),this.state.benchReps)}
-                    <br />
-                    {this.state.deadlift&&<>Deadlift: {this.state.deadlift} x {this.state.deadliftReps}</>}
-                    <br />
-                    Next goal: {this.calculateNextGoal(parseFloat(this.state.deadlift),this.state.deadliftReps)}
-                </div></div>)
+                return(<div className="fadedshort" ><h3 style={{color:'pink'}}>Your work has been logged. Thank you.</h3>
+                <br/></div>)
 
         }
     }
 
     public render() {
         console.log(rootStore.generalStore.data)
-        return (<div style={{height:'100%',width:'25%',backgroundColor:"transparent"}}>
+        return (<div style={{height:'100%',width:'25%',backgroundColor:"transparent"}} className="fadedshort">
                 <div style={{display:'flex',justifyContent:'center'}}>
                     <div style={{width:400,margin:0,height:400,backgroundColor:'#f7e1c7',borderRadius:12,marginBottom:50,border:'2px solid #fff'}}>
                         <p style={{height:40,color:'#fff'}}>{this.state.submitted?`Log today's training session`:`Submit Your One Rep Max`}</p>
-                        {rootStore.generalStore.nextGoal.squat?<div>
-                            <p>Goal: <b>S</b>{rootStore.generalStore.nextGoal.squat}  <b style={{marginLeft:10}}>B</b>{rootStore.generalStore.nextGoal.bench} <b style={{marginLeft:10}}>D</b>{rootStore.generalStore.nextGoal.deadlift}</p>
+                        {rootStore.generalStore.nextGoal.squat?<div style={{color:'white'}}>
+                            <h3 style={{color:'white',margin:0}}>Try for these numbers next week </h3>
+                            <p><b>S</b>{rootStore.generalStore.nextGoal.squat}  <b style={{marginLeft:10}}>B</b>{rootStore.generalStore.nextGoal.bench} <b style={{marginLeft:10}}>D</b>{rootStore.generalStore.nextGoal.deadlift}</p>
                             </div>:null}
 
                         <div className="scrollbar" style={{maxHeight:90,overflowY:'auto',overflowX:'hidden',maxWidth:399}}>{rootStore.generalStore.data.length>=1?<div>{rootStore.generalStore.data.map((data)=>{
                             console.log('...',data);
-                            return(<div style={{backgroundColor:'pink',color:'white',maxWidth:399,width:399,overflowX:'hidden',display:'flex',justifyContent:'space-evenly'}}><div>{data.timestamp}</div><div style={{marginLeft:20,width:40}}>S{data.data.squat} x{data.data.squatReps}</div><div style={{marginLeft:20,width:40}}>B{data.data.bench} x{data.data.benchReps}</div><div style={{marginLeft:20,width:40}}>D{data.data.deadlift} x{data.data.deadliftReps}</div>
+                            return(<div style={{borderBottom:'1px solid #f5f4fa',backgroundColor:'pink',color:'white',maxWidth:399,width:399,overflowX:'hidden',display:'flex',justifyContent:'space-evenly'}}><div>{data.timestamp}</div><div style={{marginLeft:20,width:40}}>S{data.data.squat} x{data.data.squatReps}</div><div style={{marginLeft:20,width:40}}>B{data.data.bench} x{data.data.benchReps}</div><div style={{marginLeft:20,width:40}}>D{data.data.deadlift} x{data.data.deadliftReps}</div>
                             </div>)
                         })}
                             <div style={{marginTop:10,display:'flex',justifyContent:'center',height:30}}> <div style={{width:'95%',backgroundColor:'#fff',border:'2px solid #f5f4fa',color:'#fae0e2',cursor:'pointer',borderRadius:8,height:22,fontSize:18}} onClick={()=>{this.removeData()}}>Clear All Logs</div></div>
