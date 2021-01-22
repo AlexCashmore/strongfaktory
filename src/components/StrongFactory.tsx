@@ -31,9 +31,6 @@ class StrongFactory extends React.Component<IHeaderProps, IHeaderState> {
                 <div style={{display:'flex',justifyContent:'center',paddingTop:200}}><h3 style={{color:'#4264ea'}} className="strongFont"></h3></div>
                 <div style={{display:'flex'}}>
                     <div style={{width:'33%'}}>
-                        <div><h2 className="strongFont" style={{fontSize:300,color:'#eeecf9',
-                            lineHeight: '300px',
-                            marginTop:0}}><span style={{color:'#f5f4fa',fontSize:100}}>WELCOME TO</span> STRONG FACTORY</h2></div>
                     </div>
                     <ObservedStrongSurvey rootStore={this.props.rootStore} setSubmitted={this.setSubmitted.bind(this)} />
                     <div>

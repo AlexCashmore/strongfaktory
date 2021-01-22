@@ -65,19 +65,13 @@ class Daily extends Component {
             const color = `#${randHex.toString(16)}`;
             const color2 = `#${Math.floor(randHex - 5000).toString(16)}`;
             const color3 = `#${Math.floor(randHex - 8000).toString(16)}`;
-            const squatData= this.props.dataset.map((data)=>{console.log('?????????___',data);return({x:data.timestamp,y:data.data.squat})});
+            const squatData= this.props.dataset.map((data)=>{return({x:data.timestamp,y:data.data.squat})});
             const benchData= this.props.dataset.map((data)=>{return({x:data.timestamp,y:data.data.bench})});
             const deadliftData= this.props.dataset.map((data)=>{return({x:data.timestamp,y:data.data.deadlift})});
             const testData = this.props.dataset;
-            console.log('WHAT IS MY TEST DATA',testData);
+            console.log('WHAT IS MY TEST DATA',testData,squatData,benchData,deadliftData);
 
-            const dataset2 = [];
-            testData.map((i, ix) => {
-                console.log(i,'???');
-
-
-                return (
-                    dataset2.push(
+            const dataset2 = [
                         {
                             label: `Squat`,
                             backgroundColor: color,
@@ -113,17 +107,14 @@ class Daily extends Component {
                             showLine: true,
                             hidden: false,
                             data:deadliftData
-                        },
-                    )
-                );
-            });
+                        }];
             const chartConfig = {
                 labels: this.props.dataset.length>=1?[moment(this.props.dataset[0].timestamp).toISOString(),moment(this.props.dataset[this.props.dataset.length-1].timestamp).toISOString()]:[new Date().toISOString(),moment().add('30','day').toISOString()],
                 datasets: dataset2,
             };
 
             return (
-                <section style={{width:500,height:500}}>
+                <section style={{width:800,height:800}}>
                     <div className="wrapper">
                         <div className="container">
                             <div style={{ margin: 15 }}>
@@ -186,9 +177,7 @@ class Daily extends Component {
                                             }],
                                             yAxes: [{
                                                 ticks: {
-                                                    stepSize: 5,
-                                                    suggestedMin: 0,
-                                                    suggestedMax: 300,
+                                                    stepSize: 1,
                                                 },
                                                 scaleLabel: {
                                                     display: true,

@@ -66,6 +66,7 @@ class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
         console.log('prevData',typeof prevData,prevData,data);
         if(typeof prevData !== 'undefined'){
             const prevDataSet = JSON.parse(prevData)
+            const addDay = prevDataSet.length
             prevDataSet.push({data:{squat:data.squat,deadlift:data.deadlift,bench:data.bench},timestamp:moment().format('LL')});
             rootStore.generalStore.setData(prevDataSet);
             cookie.set('data',prevDataSet);
@@ -84,7 +85,7 @@ class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
     renderActiveQuestion(){
         switch(this.state.activeQuestion) {
             case 'squat':
-                return <div style={{width: '100%', display: 'block', marginTop: 50}}>
+                return <div className="fadedshort" style={{width: '100%', display: 'block', marginTop: 50}}>
                     <input
                         max={400}
                         min={0}
@@ -104,11 +105,10 @@ class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
                             }
                         }}
                     />
-                    <label className="form-label" htmlFor="squat">Squat. Leave blank and press enter if you did not squat</label>
 
                 </div>;
             case 'bench':
-                return(<div style={{width: '100%', display: 'block', marginTop: 50}}>
+                return(<div className="fadedshort"  style={{width: '100%', display: 'block', marginTop: 50}}>
                     <input
                         max={400}
                         min={0}
@@ -128,11 +128,10 @@ class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
                             }
                         }}
                     />
-                    <label className="form-label" htmlFor="squat">Bench. Leave blank and press enter if you did not bench</label>
 
                 </div>);
             case 'deadlift':
-                return(<div style={{width: '100%', display: 'block', marginTop: 50}}>
+                return(<div className="fadedshort"  style={{width: '100%', display: 'block', marginTop: 50}}>
                     <input
                         max={400}
                         min={0}
@@ -153,11 +152,10 @@ class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
                             }
                         }}
                     />
-                    <label className="form-label" htmlFor="deadlift">Deadlift. Leave blank and press enter if you did not deadlift</label>
 
                 </div>);
             default:
-                return(<div><h3>Your work has been logged. Thank you.</h3>
+                return(<div className="fadedshort" ><h3>Your work has been logged. Thank you.</h3>
                 <br/>
                 <div>
                     {this.state.squat&&<>Squat: {this.state.squat}</>}
@@ -172,18 +170,22 @@ class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
 
     public render() {
         console.log(rootStore.generalStore.data)
-        return (<div style={{height:'100%',width:'100%',backgroundColor:"transparent"}}>
+        return (<div style={{height:'100%',width:'25%',backgroundColor:"transparent"}}>
                 <div style={{display:'flex',justifyContent:'center'}}>
                     <div style={{width:400,margin:0,height:400,backgroundColor:'#f7e1c7',borderRadius:12,marginBottom:50}}>
                         <p style={{height:40}}>Log your more recent training session</p>
 
-                        {rootStore.generalStore.data.length>=1?rootStore.generalStore.data.map((data)=>{
+                        <div className="scrollbar" style={{maxHeight:90,overflowY:'auto',overflowX:'hidden',maxWidth:399}}>{rootStore.generalStore.data.length>=1?<div>{rootStore.generalStore.data.map((data)=>{
                             console.log('...',data);
-                            return(<div style={{backgroundColor:'pink',color:'white',width:400,display:'flex',justifyContent:'center'}}><div>{data.timestamp}</div><div style={{marginLeft:20}}>S{data.data.squat}</div><div style={{marginLeft:20}}>B{data.data.bench}</div><div style={{marginLeft:20}}>D{data.data.deadlift}</div></div>)
-                        }):null}
+                            return(<div style={{backgroundColor:'pink',color:'white',maxWidth:399,width:399,overflowX:'hidden',display:'flex',justifyContent:'space-evenly'}}><div>{data.timestamp}</div><div style={{marginLeft:20,width:40}}>S{data.data.squat}</div><div style={{marginLeft:20,width:40}}>B{data.data.bench}</div><div style={{marginLeft:20,width:40}}>D{data.data.deadlift}</div>
+                            </div>)
+                        })}
+                            <div style={{marginTop:10,display:'flex',justifyContent:'center',height:30}}> <div style={{width:'95%',backgroundColor:'#fff',border:'2px solid #f5f4fa',color:'#fae0e2',cursor:'pointer',borderRadius:8,height:22,fontSize:18}} onClick={()=>{this.removeData()}}>Clear All Logs</div></div>
+
+                        </div>:null}
+                        </div>
                         <br />
                         {this.renderActiveQuestion()}
-                        <div style={{display:'flex',justifyContent:'center'}}> <div style={{width:200,backgroundColor:'#fff',border:'2px solid #f5f4fa',color:'#f5f4fa',cursor:'pointer',borderRadius:8,height:60,fontSize:28,lineHeight:'32px',paddingTop:10}} onClick={()=>{this.removeData()}}>Reset</div></div>
 
 
                     </div>
