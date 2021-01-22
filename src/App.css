@@ -42,7 +42,8 @@
   margin-right: 10px;
   border-radius: 6px;
   max-width:388px !important;
-  box-shadow: 0 1px 0 0 #4264ea;
+  border:2px solid #fff;
+  outline:none;
   padding:5px;
   width:368px;
   height:60px;

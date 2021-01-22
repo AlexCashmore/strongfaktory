@@ -150,7 +150,7 @@ class Daily extends Component {
                                                 label(tooltipItems, data) {
                                                     const averageDataSetIndex = tooltipItems.datasetIndex;
                                                     console.log(data,tooltipItems);
-                                                    return `${data.datasets[tooltipItems.datasetIndex].label}: ${tooltipItems.yLabel} kg `;
+                                                    return `${data.datasets[tooltipItems.datasetIndex].label}: ${tooltipItems.yLabel} kg/lb `;
                                                 },
                                             },
                                         },
@@ -181,7 +181,7 @@ class Daily extends Component {
                                                 },
                                                 scaleLabel: {
                                                     display: true,
-                                                    labelString: "KG",
+                                                    labelString: "KG/LB",
                                                 },
                                             }],
                                         },
