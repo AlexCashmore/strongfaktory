@@ -36,7 +36,12 @@
     transform: rotate(360deg);
   }
 }
-
+td{
+width:90px;height:60px;background-color:#fff;border:1px solid green;
+}
+.blank-cell{
+  background-color: #f5f4fa !important;border:none;
+}
 .signup-form {
   margin-left:10px;
   margin-right: 10px;

@@ -48,6 +48,21 @@ class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
         }
 
     }
+    calculateNextGoalInt(lift,reps) {
+        if (reps < 2) {
+            return lift
+        }
+        if(reps >=2 && reps <4){
+            return lift+2.5
+        }
+        if(reps >=4 && reps <=5){
+            return lift+3
+        }
+        if(reps>5){
+            return lift+6.8
+        }
+
+    }
 
     handleSurveyChangeReps(e,type){
         if(type==='squat'){
@@ -107,7 +122,11 @@ class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
         const nextSquatGoal = this.calculateNextGoal(parseFloat(this.state.squat),this.state.squatReps);
         const nextBenchGoal = this.calculateNextGoal(parseFloat(this.state.bench),this.state.benchReps);
         const nextDeadliftGoal = this.calculateNextGoal(parseFloat(this.state.deadlift),this.state.deadliftReps);
+        const nextSquatGoalInt = this.calculateNextGoalInt(parseFloat(this.state.squat),this.state.squatReps);
+        const nextBenchGoalInt = this.calculateNextGoalInt(parseFloat(this.state.bench),this.state.benchReps);
+        const nextDeadliftGoalInt = this.calculateNextGoalInt(parseFloat(this.state.deadlift),this.state.deadliftReps);
         const nextGoal = {squat:nextSquatGoal,deadlift:nextDeadliftGoal,bench:nextBenchGoal};
+        const nextGoalInt = {squat:nextSquatGoalInt,deadlift:nextDeadliftGoalInt,bench:nextBenchGoalInt};
         cookie.set('nextGoal',nextGoal);
         const prevData = cookie.get('data')
         console.log('prevData',typeof prevData,prevData,data);
@@ -117,12 +136,16 @@ class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
             prevDataSet.push({data:{squat:data.squat,squatReps:data.squatReps,deadlift:data.deadlift,deadliftReps:data.deadliftReps,bench:data.bench,benchReps:data.benchReps},timestamp:moment().format('LL')});
             rootStore.generalStore.setData(prevDataSet);
             rootStore.generalStore.setNextGoal(nextGoal);
+            rootStore.generalStore.setNextGoalInt(nextGoalInt);
+            cookie.set('next',nextGoalInt);
             cookie.set('data',prevDataSet);
         }
         else{
             cookie.set('data',[{data:data,timestamp:moment().format('LL')}]);
+            cookie.set('next',nextGoalInt);
             rootStore.generalStore.setData([{data:data,timestamp:moment().format('LL')}]);
             rootStore.generalStore.setNextGoal(nextGoal);
+            rootStore.generalStore.setNextGoalInt(nextGoalInt);
             this.setState({submitted:true})
         }
 
@@ -130,6 +153,7 @@ class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
     removeData(){
         cookie.remove('data')
         cookie.remove('nextGoal')
+        cookie.remove('next')
         window.location.reload();
     }
 

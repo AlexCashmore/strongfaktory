@@ -12,6 +12,7 @@ export default class GeneralStore {
     @observable username = 'User'
     @observable data = typeof cookie.get('data')!=="undefined"?JSON.parse(cookie.get('data')):[];
     @observable nextGoal = typeof cookie.get('nextGoal')!=="undefined"?JSON.parse(cookie.get('nextGoal')):{};
+    @observable nextGoalInt = typeof cookie.get('next')!=="undefined"?JSON.parse(cookie.get('next')):{};
 
     @action.bound setUsername(username){
         this.username = username
@@ -20,7 +21,10 @@ export default class GeneralStore {
         this.data = data
     }
     @action.bound setNextGoal(data){
-        this.data = data
+        this.nextGoal = data
+    }
+    @action.bound setNextGoalInt(data){
+        this.nextGoalInt = data
     }
 
 
