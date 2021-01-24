@@ -4,10 +4,9 @@
     <list default="true" id="1010c445-af05-41a7-a706-42e5067c958e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/StrongFactory.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StrongFactory.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/StrongSurvey.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StrongSurvey.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/stores/generalStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/generalStore.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -82,7 +81,7 @@
       <updated>1611114599152</updated>
       <workItem from="1611114600255" duration="4229000" />
       <workItem from="1611209631313" duration="7367000" />
-      <workItem from="1611349965307" duration="13091000" />
+      <workItem from="1611349965307" duration="17371000" />
     </task>
     <servers />
   </component>

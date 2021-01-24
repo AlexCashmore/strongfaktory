@@ -19,9 +19,11 @@ export interface IHeaderState {
     squatReps:any;
     deadliftReps:any;
     loggingMax:any;
+    showGraph:any,
 }
 interface IHeaderProps {
     generalStore:any;
+    toggleGraph:any;
 
 }
 
@@ -29,7 +31,7 @@ interface IHeaderProps {
 class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
     constructor(props: IHeaderProps, state:IHeaderState) {
         super(props);
-        this.state = { reps:0,activeQuestion:'squat',squat:'',bench:'',deadlift:'',submitted:rootStore.generalStore.data.length>=1,
+        this.state = { showGraph:false,reps:0,activeQuestion:'squat',squat:'',bench:'',deadlift:'',submitted:rootStore.generalStore.data.length>=1,
             loggingMax:rootStore.generalStore.data.length<1,
         squatReps:rootStore.generalStore.data.length>=1?0:1,deadliftReps:rootStore.generalStore.data.length>=1?0:1,benchReps:rootStore.generalStore.data.length>=1?0:1,};
     }
@@ -338,7 +340,7 @@ class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
                     <div style={{width:400,margin:0,height:400,backgroundColor:'#f7e1c7',borderRadius:12,marginBottom:50,border:'2px solid #fff'}}>
                         <p style={{height:40,color:'#fff'}}>{this.state.submitted?`Log today's training session`:`Submit Your One Rep Max`}</p>
                         {rootStore.generalStore.nextGoal.squat?<div style={{color:'white'}}>
-                            <h3 style={{color:'white',margin:0}}>Try for these numbers next week </h3>
+                            <h3 style={{color:'white',margin:0}}>{rootStore.generalStore.data.length===1?'Your programme has been generated below':'Try for these numbers next week'}</h3>
                             <p><b>S</b>{rootStore.generalStore.nextGoal.squat}  <b style={{marginLeft:10}}>B</b>{rootStore.generalStore.nextGoal.bench} <b style={{marginLeft:10}}>D</b>{rootStore.generalStore.nextGoal.deadlift}</p>
                             </div>:null}
 
@@ -353,6 +355,8 @@ class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
                         </div>
                         <br />
                         {this.renderActiveQuestion()}
+                        <div style={{marginTop:10,display:'flex',justifyContent:'center',height:30}}> <div style={{width:'95%',backgroundColor:'#fff',border:'2px solid #f5f4fa',color:'#fae0e2',cursor:'pointer',borderRadius:8,height:22,fontSize:18}} onClick={()=>{this.props.toggleGraph()}}>Toggle Progress Graph</div></div>
+
 
 
                     </div>
