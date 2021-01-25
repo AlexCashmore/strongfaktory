@@ -92,7 +92,7 @@ class StrongSession extends React.Component<IHeaderProps, IHeaderState> {
             if(ix===this.state.index) {
             if (set.name) {
             return <div className="fadedshort" style={{color: arr[ix-1]&&(set.name!==arr[ix-1].name)?'#6bf5fa':'#fff',marginTop:150}}>{this.renderSetName(set.name)}
-            <div style={{height: 60, width: '100%',fontSize:32}}>{set.setWeight} x {set.reps}</div>
+            <div style={{height: 60, width: '100%',fontSize:32}}>{Math.round(set.setWeight*100)/100} x {set.reps}</div>
             </div>
         }
             return <div style={{

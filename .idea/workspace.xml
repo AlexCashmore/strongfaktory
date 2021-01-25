@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1010c445-af05-41a7-a706-42e5067c958e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/StrongSession.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StrongFactory.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StrongFactory.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/stores/generalStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/generalStore.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StrongSession.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StrongSession.tsx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -84,6 +80,7 @@
       <workItem from="1611209631313" duration="7367000" />
       <workItem from="1611349965307" duration="17646000" />
       <workItem from="1611545010435" duration="10479000" />
+      <workItem from="1611560850647" duration="21000" />
     </task>
     <servers />
   </component>
