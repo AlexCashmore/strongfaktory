@@ -42,18 +42,24 @@ width:90px;height:60px;background-color:#fff;border:1px solid green;
 .slider {
   position:absolute;
   top:0;
-  right:0px !important;
+  right:0 !important;
   background-color:#a8d7ea;
   color:#fff;
-  transition:1s ease;
+  transition:0.4s ease;
 }
 .training-select{
-  left:0;
+  width:100%;
+  right:98%;
   position:absolute;height:84%;width:80;
   background-color:#4264ea;writing-mode:vertical-rl;
   text-orientation: mixed;
   color:#fff;
 }
+.normal{
+  writing-mode:initial;
+  text-orientation: initial;
+  display: flex;
+justify-content: center}
 .blank-cell{
   background-color: #f5f4fa !important;border:none;
 }

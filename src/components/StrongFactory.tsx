@@ -5,12 +5,14 @@ import ObservedStrongSurvey from "./StrongSurvey";
 import {toJS} from "mobx";
 import {rootStore} from "../stores/Stores";
 import LineGraph from "./graph/daily";
+import ObservedStrongSession from "./StrongSession";
 
 export interface IHeaderState {
     username:any;
     submitted:any;
     showGraph:any;
     training:any;
+    session:any;
 }
 interface IHeaderProps {
     generalStore:any;
@@ -26,22 +28,127 @@ class StrongFactory extends React.Component<IHeaderProps, IHeaderState> {
     toggleGraph(){
         this.setState({showGraph:!this.state.showGraph})
     }
+    resetSession(){
+        console.log(this.state.session,'reset');
+        this.setState({session:false})
+    }
     setSubmitted(submitted){
         this.setState({submitted})
 
     }
     calculateWeight(multiplier,weight){
         // @ts-ignore
-        return parseFloat(weight*multiplier);
+        return Math.round(parseFloat(weight*multiplier)*100)/100 ;
+    }
+    renderSession(lifts){
+        console.log('????',this.state.session);
+        const defaultSession = (<div style={{height: '100%', width: '100%'}}>
+            <div style={{
+                height: '100%',
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+                borderRadius: 12,
+                backgroundColor: '#f5f4fa'
+            }}><h3 style={{color: '#4264ea'}}>Select Session:</h3></div>
+            <br/>
+            <div style={{height: '100%', width: '100%', display: 'flex', justifyContent: 'center'}}>
+                <div onClick={() => {
+                    this.setState({session: 'BV'})
+                }} style={{
+                    cursor: 'pointer',
+                    width: '100%',
+                    borderRadius: 12,
+                    backgroundColor: '#4264ea',
+                    color: '#fff',
+                    height: 100,
+                    margin: 10,
+                    paddingTop: 40
+                }}>Bench Volume
+                </div>
+                <div onClick={() => {
+                    this.setState({session: 'SS'})
+                }} style={{
+                    cursor: 'pointer',
+                    width: '100%',
+                    borderRadius: 12,
+                    backgroundColor: '#4264ea',
+                    color: '#fff',
+                    height: 100,
+                    margin: 10,
+                    paddingTop: 40
+                }}>Squat Strength
+                </div>
+                <div onClick={() => {
+                    this.setState({session: 'OS'})
+                }} style={{
+                    cursor: 'pointer',
+                    width: '100%',
+                    borderRadius: 12,
+                    backgroundColor: '#4264ea',
+                    color: '#fff',
+                    height: 100,
+                    margin: 10,
+                    paddingTop: 40
+                }}>OHP Strength
+                </div>
+                <div onClick={() => {
+                    this.setState({session: 'DS'})
+                }} style={{
+                    cursor: 'pointer',
+                    width: '100%',
+                    borderRadius: 12,
+                    backgroundColor: '#4264ea',
+                    color: '#fff',
+                    height: 100,
+                    margin: 10,
+                    paddingTop: 40
+                }}>Deadlift Strength
+                </div>
+                <div onClick={() => {
+                    this.setState({session: 'BS'})
+                }} style={{
+                    cursor: 'pointer',
+                    width: '100%',
+                    borderRadius: 12,
+                    backgroundColor: '#4264ea',
+                    color: '#fff',
+                    height: 100,
+                    margin: 10,
+                    paddingTop: 40
+                }}>Bench Strength
+                </div>
+            </div>
+
+        </div>);
+        if(!this.state.session||this.state.session==='false') {
+            return defaultSession
+        }
+        else{
+            switch(this.state.session){
+                case 'BV':return(<ObservedStrongSession resetSession={this.resetSession.bind(this)} lifts={lifts} generalStore={rootStore.generalStore} session={['BenchV','OHPV']} />)
+                case 'SS':return(<ObservedStrongSession resetSession={this.resetSession.bind(this)} lifts={lifts}  generalStore={rootStore.generalStore}  session={['SquatS','DeadliftV']} />)
+                case 'OS':return(<ObservedStrongSession resetSession={this.resetSession.bind(this)} lifts={lifts}  generalStore={rootStore.generalStore}  session={['OHPS','IBenchV']} />)
+                case 'DS':return(<ObservedStrongSession resetSession={this.resetSession.bind(this)} lifts={lifts}  generalStore={rootStore.generalStore}  session={['DeadliftS','FrontSquatV']} />)
+                case 'BS':return(<ObservedStrongSession resetSession={this.resetSession.bind(this)} lifts={lifts}  generalStore={rootStore.generalStore}  session={['BenchS','CGBenchV']} />)
+                case false: return defaultSession;
+                default: return defaultSession;
+            }
+        }
+
     }
 
     public render() {
         const activeDL = rootStore.generalStore.nextGoalInt.deadlift;
         const activeBench = rootStore.generalStore.nextGoalInt.bench;
         const activeSquat = rootStore.generalStore.nextGoalInt.squat;
-        const activeOHP = 70;
+        const activeOHP = Math.round(0.7*rootStore.generalStore.nextGoalInt.bench);
+
         return (<div style={{height:'84%',width:'100%',backgroundColor:'#f5f4fa'}}>
                 <div className={`training-select ${this.state.training?'slider':''}`}>
+                    <div>{this.state.training?<div style={{position:'absolute',right:'38%',top:100,width:600,height:600,backgroundColor:'#f5f4fa',borderRadius:12}}>
+                        <div  className="normal" style={{width:'100%'}}>{this.renderSession({deadlift:activeDL,bench:activeBench,squat:activeSquat,ohp:activeOHP})}</div>
+                    </div>:null}</div>
                     <div style={{cursor:'pointer'}}  onClick={()=>{this.setState({training:!this.state.training})}}><h3 >{this.state.training?'PROGRESSION':'TRAINING'}</h3></div>
                 </div>
                 <div style={{display:'flex',justifyContent:'center'}}><h3 style={{color:'#4264ea'}} className="strongFont"></h3></div>
