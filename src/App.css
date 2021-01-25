@@ -39,6 +39,21 @@
 td{
 width:90px;height:60px;background-color:#fff;border:1px solid green;
 }
+.slider {
+  position:absolute;
+  top:0;
+  right:0px !important;
+  background-color:#a8d7ea;
+  color:#fff;
+  transition:1s ease;
+}
+.training-select{
+  left:0;
+  position:absolute;height:84%;width:80;
+  background-color:#4264ea;writing-mode:vertical-rl;
+  text-orientation: mixed;
+  color:#fff;
+}
 .blank-cell{
   background-color: #f5f4fa !important;border:none;
 }

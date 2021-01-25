@@ -336,8 +336,8 @@ class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
     public render() {
         console.log(rootStore.generalStore.data)
         return (<div style={{height:'100%',width:'25%',backgroundColor:"transparent"}} className="fadedshort">
-                <div style={{display:'flex',justifyContent:'center'}}>
-                    <div style={{width:400,margin:0,height:400,backgroundColor:'#f7e1c7',borderRadius:12,marginBottom:50,border:'2px solid #fff'}}>
+                <div style={{display:'flex'}}>
+                    <div style={{width:400,margin:0,height:550,backgroundColor:'#f7e1c7',borderRadius:12,marginBottom:50,border:'2px solid #fff'}}>
                         <p style={{height:40,color:'#fff'}}>{this.state.submitted?`Log today's training session`:`Submit Your One Rep Max`}</p>
                         {rootStore.generalStore.nextGoal.squat?<div style={{color:'white'}}>
                             <h3 style={{color:'white',margin:0}}>{rootStore.generalStore.data.length===1?'Your programme has been generated below':'Try for these numbers next week'}</h3>
