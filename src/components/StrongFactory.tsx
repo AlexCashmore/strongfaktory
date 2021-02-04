@@ -216,9 +216,9 @@ class StrongFactory extends React.Component<IHeaderProps, IHeaderState> {
                 </div>
                 <div style={{display:'flex',justifyContent:'center',height:200,marginTop:100,zIndex:-1}}><div className="scrollbar" style={{overflowY:'auto',maxHeight:600,width:800,fontSize:14,margin:20,padding:20,backgroundColor:'#6584ff'}}>
                     {rootStore.generalStore.data.length<1?<div><p style={{color:'#fff'}}>
-                            Start by entering your one rep maxes, your training maxes will be calculated at 90% of your true max.</p><p>
+                            Start by entering your one rep maxes, your training maxes will be calculated at 90% of your true max.</p><p style={{color:'#fff'}}>
                         Each week, you will increase your training max if you were able to complete all the reps, <p>your new peak set will be suggested for you based on how many reps you achieved.</p>
-                        <p>Your progress is stored in cookies and will be logged on the graph on the right and can be cleared at any time. </p>
+                        <p style={{color:'#fff'}}>Your progress is stored in cookies and will be logged on the graph on the right and can be cleared at any time. </p>
                     </p></div>:null}
                     {/*TODO LP programme here - maxes up the top*/}
 

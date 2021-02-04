@@ -4,10 +4,8 @@
     <list default="true" id="1010c445-af05-41a7-a706-42e5067c958e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/StrongFactory.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StrongFactory.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StrongSession.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StrongSession.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/StrongSurvey.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StrongSurvey.tsx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -87,7 +85,7 @@
       <workItem from="1611545010435" duration="10479000" />
       <workItem from="1611560850647" duration="735000" />
       <workItem from="1611691702049" duration="58000" />
-      <workItem from="1612421015241" duration="4515000" />
+      <workItem from="1612421015241" duration="5178000" />
     </task>
     <servers />
   </component>

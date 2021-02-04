@@ -51,6 +51,8 @@ width:90px;height:60px;background-color:#fff;border:1px solid green;color:#282c3
   transition:0.4s ease;
 }
 .training-select{
+  border:2px solid #fff;
+  border-radius: 12px;
   width:100%;
   right:95%;
   position:absolute;height:84%;width:80;

@@ -337,7 +337,7 @@ class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
         console.log(rootStore.generalStore.data)
         return (<div style={{height:'100%',width:'100%',backgroundColor:"transparent"}} className="fadedshort">
                 <div style={{display:'flex'}}>
-                    <div style={{width:350,padding:'0px 40px 40px 0px',margin:0,height:550,backgroundColor:'#6584ff',borderRadius:12,marginBottom:50,border:'2px solid #fff'}}>
+                    <div style={{width:350,padding:'0px 0px 0px 30px',margin:0,height:550,backgroundColor:'#6584ff',borderRadius:12,marginBottom:50,border:'2px solid #fff'}}>
                         <p style={{height:40,color:'#fff'}}>{this.state.submitted?`Log today's training session`:`Submit Your One Rep Max`}</p>
                         {rootStore.generalStore.nextGoal.squat?<div style={{color:'white'}}>
                             <h3 style={{color:'white',margin:0}}>{rootStore.generalStore.data.length===1?'Your programme has been generated below':'Try for these numbers next week'}</h3>
@@ -346,17 +346,17 @@ class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
 
                         <div className="scrollbar" style={{maxHeight:90,overflowY:'auto',overflowX:'hidden',maxWidth:399}}>{rootStore.generalStore.data.length>=1?<div>{rootStore.generalStore.data.map((data)=>{
                             console.log('...',data);
-                            return(<div style={{borderBottom:'1px solid #6584ff',backgroundColor:'pink',color:'white',maxWidth:399,width:399,overflowX:'hidden',display:'flex',justifyContent:'space-evenly'}}><div>{data.timestamp}</div><div style={{marginLeft:20,width:40}}>S{data.data.squat} x{data.data.squatReps}</div><div style={{marginLeft:20,width:40}}>B{data.data.bench} x{data.data.benchReps}</div><div style={{marginLeft:20,width:40}}>D{data.data.deadlift} x{data.data.deadliftReps}</div>
+                            return(<div style={{borderBottom:'1px solid #6584ff',backgroundColor:'#4264ea',color:'white',maxWidth:399,overflowX:'hidden',display:'flex',justifyContent:'space-evenly'}}><div>{moment(data.timestamp).format('l')}</div><div style={{width:40}}>S{data.data.squat} x{data.data.squatReps}</div><div style={{width:40}}>B{data.data.bench} x{data.data.benchReps}</div><div style={{width:40}}>D{data.data.deadlift} x{data.data.deadliftReps}</div>
                             </div>)
                         })}
-                            <div style={{marginTop:10,display:'flex',justifyContent:'center',height:30}}> <div style={{width:'95%',backgroundColor:'#fff',border:'2px solid #6584ff',color:'#fae0e2',cursor:'pointer',borderRadius:8,height:22,fontSize:18}} onClick={()=>{this.removeData()}}>Clear All Logs</div></div>
+                            <div style={{marginTop:10,display:'flex',justifyContent:'center',height:30}}> <div style={{width:'95%',backgroundColor:'#fff',border:'2px solid #6584ff',color:'#4264ea',cursor:'pointer',borderRadius:8,height:22,fontSize:18}} onClick={()=>{this.removeData()}}>Clear All Logs</div></div>
 
                         </div>:null}
                         </div>
                         <br />
                         {this.renderActiveQuestion()}
 {/*
-                        <div style={{marginTop:10,display:'flex',justifyContent:'center',height:30}}> <div style={{width:'95%',backgroundColor:'#fff',border:'2px solid #6584ff',color:'#fae0e2',cursor:'pointer',borderRadius:8,height:22,fontSize:18}} onClick={()=>{this.props.toggleGraph()}}>Toggle Progress Graph</div></div>
+                        <div style={{marginTop:10,display:'flex',justifyContent:'center',height:30}}> <div style={{width:'95%',backgroundColor:'#fff',border:'2px solid #f5f4fa',color:'#fae0e2',cursor:'pointer',borderRadius:8,height:22,fontSize:18}} onClick={()=>{this.props.toggleGraph()}}>Toggle Progress Graph</div></div>
 */}
 
 
