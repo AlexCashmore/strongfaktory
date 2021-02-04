@@ -84,7 +84,7 @@ class StrongSession extends React.Component<IHeaderProps, IHeaderState> {
 
         console.log('.!',session);
         const combinedSession = session[0].concat(session[1]);
-    return(<div style={{cursor:'pointer'}} onClick={()=>{this.iterateIndex(combinedSession.length)}}><div style={{width:300,height:400,marginTop:50,backgroundColor:'orange',padding:50,borderRadius:12}}>
+    return(<div style={{cursor:'pointer'}} onClick={()=>{this.iterateIndex(combinedSession.length)}}><div style={{width:200,height:400,marginTop:50,backgroundColor:'orange',padding:50,paddingLeft:120,borderRadius:12}}>
         {combinedSession.map((set,ix,arr)=>{
             if(this.state.index===arr.length&&ix===0){
                 return(<div onClick={()=>{this.props.resetSession()}}>You have completed the workout! Tap to reset.</div>)
@@ -93,6 +93,7 @@ class StrongSession extends React.Component<IHeaderProps, IHeaderState> {
             if (set.name) {
             return <div className="fadedshort" style={{color: arr[ix-1]&&(set.name!==arr[ix-1].name)?'#6bf5fa':'#fff',marginTop:150}}>{this.renderSetName(set.name)}
             <div style={{height: 60, width: '100%',fontSize:32}}>{Math.round(set.setWeight*100)/100} x {set.reps}</div>
+                <div style={{marginTop:30,fontSize:9,width:'100%',display:'flex',justifyContent:'space-around'}}>{arr[ix-1]&&<div>{Math.round(arr[ix-1].setWeight*100)/100} x {arr[ix-1].reps}</div>}{`${ix+1} / ${combinedSession.length}`} {arr[ix+1]&&<div>{Math.round(arr[ix+1].setWeight*100)/100} x {arr[ix+1].reps}</div>}</div>
             </div>
         }
             return <div style={{

@@ -41,6 +41,10 @@ class StrongFactory extends React.Component<IHeaderProps, IHeaderState> {
         return Math.round(parseFloat(weight*multiplier)*100)/100 ;
     }
     renderSession(lifts){
+        const activeDL = rootStore.generalStore.nextGoalInt.deadlift;
+        const activeBench = rootStore.generalStore.nextGoalInt.bench;
+        const activeSquat = rootStore.generalStore.nextGoalInt.squat;
+        const activeOHP = Math.round(0.7*rootStore.generalStore.nextGoalInt.bench);
         console.log('????',this.state.session);
         const defaultSession = (<div style={{height: '100%', width: '100%'}}>
             <div style={{
@@ -49,74 +53,95 @@ class StrongFactory extends React.Component<IHeaderProps, IHeaderState> {
                 display: 'flex',
                 justifyContent: 'center',
                 borderRadius: 12,
-                backgroundColor: '#f5f4fa'
-            }}><h3 style={{color: '#4264ea'}}>Select Session:</h3></div>
+                backgroundColor: '#6584ff'
+            }}><h3 style={{color: '#4264ea',paddingLeft:60,color:'#fff'}}>Select Session:</h3></div>
             <br/>
-            <div style={{height: '100%', width: '100%', display: 'flex', justifyContent: 'center'}}>
+            <div style={{height: 600, width: '100%', display: 'inline'}}>
                 <div onClick={() => {
                     this.setState({session: 'BV'})
                 }} style={{
                     cursor: 'pointer',
-                    width: '100%',
+                       width: '70%',
+                   margin: '0px 0px 20px 70px',
                     borderRadius: 12,
                     backgroundColor: '#4264ea',
                     color: '#fff',
-                    height: 100,
-                    margin: 10,
-                    paddingTop: 40
+                    height: 20,
+
+                    padding:20
                 }}>Bench Volume
                 </div>
                 <div onClick={() => {
                     this.setState({session: 'SS'})
                 }} style={{
                     cursor: 'pointer',
-                    width: '100%',
+                       width: '70%',
+                   margin: '0px 0px 20px 70px',
                     borderRadius: 12,
                     backgroundColor: '#4264ea',
                     color: '#fff',
-                    height: 100,
-                    margin: 10,
-                    paddingTop: 40
+                    height: 20,
+
+                    padding:20
                 }}>Squat Strength
                 </div>
                 <div onClick={() => {
                     this.setState({session: 'OS'})
                 }} style={{
                     cursor: 'pointer',
-                    width: '100%',
+                       width: '70%',
+                   margin: '0px 0px 20px 70px',
                     borderRadius: 12,
                     backgroundColor: '#4264ea',
                     color: '#fff',
-                    height: 100,
-                    margin: 10,
-                    paddingTop: 40
+                    height: 20,
+
+                    padding:20
                 }}>OHP Strength
                 </div>
                 <div onClick={() => {
                     this.setState({session: 'DS'})
                 }} style={{
                     cursor: 'pointer',
-                    width: '100%',
+                       width: '70%',
+                   margin: '0px 0px 20px 70px',
                     borderRadius: 12,
                     backgroundColor: '#4264ea',
                     color: '#fff',
-                    height: 100,
-                    margin: 10,
-                    paddingTop: 40
+                    height: 20,
+
+                    padding:20
                 }}>Deadlift Strength
                 </div>
                 <div onClick={() => {
                     this.setState({session: 'BS'})
                 }} style={{
                     cursor: 'pointer',
-                    width: '100%',
+                       width: '70%',
+                   margin: '0px 0px 20px 70px',
                     borderRadius: 12,
                     backgroundColor: '#4264ea',
                     color: '#fff',
-                    height: 100,
-                    margin: 10,
-                    paddingTop: 40
+                    height: 20,
+
+                    padding:20
                 }}>Bench Strength
+                </div>
+                <div onClick={() => {
+                    this.setState({session: 'FR'})
+                }} style={{
+                    cursor: 'pointer',
+                    width: '70%',
+                   margin: '0px 0px 20px 70px',
+                    borderRadius: 12,
+                    backgroundColor: '#fff',
+                    color: 'green',
+                    height: 20,
+
+                    marginTop:20,
+
+                    padding:20
+                }}>Full Programme
                 </div>
             </div>
 
@@ -131,51 +156,7 @@ class StrongFactory extends React.Component<IHeaderProps, IHeaderState> {
                 case 'OS':return(<ObservedStrongSession resetSession={this.resetSession.bind(this)} lifts={lifts}  generalStore={rootStore.generalStore}  session={['OHPS','IBenchV']} />)
                 case 'DS':return(<ObservedStrongSession resetSession={this.resetSession.bind(this)} lifts={lifts}  generalStore={rootStore.generalStore}  session={['DeadliftS','FrontSquatV']} />)
                 case 'BS':return(<ObservedStrongSession resetSession={this.resetSession.bind(this)} lifts={lifts}  generalStore={rootStore.generalStore}  session={['BenchS','CGBenchV']} />)
-                case false: return defaultSession;
-                default: return defaultSession;
-            }
-        }
-
-    }
-
-    public render() {
-        const activeDL = rootStore.generalStore.nextGoalInt.deadlift;
-        const activeBench = rootStore.generalStore.nextGoalInt.bench;
-        const activeSquat = rootStore.generalStore.nextGoalInt.squat;
-        const activeOHP = Math.round(0.7*rootStore.generalStore.nextGoalInt.bench);
-
-        return (<div style={{height:'84%',width:'100%',backgroundColor:'#f5f4fa'}}>
-                <div className={`training-select ${this.state.training?'slider':''}`}>
-                    <div>{this.state.training?<div style={{position:'absolute',right:'38%',top:100,width:600,height:600,backgroundColor:'#f5f4fa',borderRadius:12}}>
-                        <div  className="normal" style={{width:'100%'}}>{this.renderSession({deadlift:activeDL,bench:activeBench,squat:activeSquat,ohp:activeOHP})}</div>
-                    </div>:null}</div>
-                    <div style={{cursor:'pointer'}}  onClick={()=>{this.setState({training:!this.state.training})}}><h3 >{this.state.training?'PROGRESSION':'TRAINING'}</h3></div>
-                </div>
-                <div style={{display:'flex',justifyContent:'center'}}><h3 style={{color:'#4264ea'}} className="strongFont"></h3></div>
-                <div style={{display:'flex',justifyContent:'flex-end',height:480}}>
-                    <div style={{width:'33%'}}>
-                    </div>
-                    <ObservedStrongSurvey toggleGraph={this.toggleGraph.bind(this)} rootStore={this.props.rootStore} setSubmitted={this.setSubmitted.bind(this)} />
-                    {this.state.showGraph?<div>
-                        <section className="dashboard content container fadedshort">
-                            <div className="wrapper">
-                                <LineGraph dataset={rootStore.generalStore.data} submitted={this.state.submitted} />
-                            </div>
-                        </section>
-                    </div>:null}
-
-                    <div style={{width:'33%'}}>
-                    <div><h2 className="strongFont" ></h2></div>
-                </div>
-                </div>
-                <div style={{display:'flex',justifyContent:'center',height:600}}><div className="scrollbar" style={{overflowY:'auto',maxHeight:600,width:800,fontSize:14,margin:20,padding:20,backgroundColor:'#f5f4fa'}}>
-                    {rootStore.generalStore.data.length<1?<div><p>
-                            Start by entering your one rep maxes, your training maxes will be calculated at 90% of your true max.</p><p>
-                        Each week, you will increase your training max if you were able to complete all the reps, <p>your new peak set will be suggested for you based on how many reps you achieved.</p>
-                        <p>Your progress is stored in cookies and will be logged on the graph on the right and can be cleared at any time. </p>
-                    </p></div>:null}
-                    {/*TODO LP programme here - maxes up the top*/}
-                    {rootStore.generalStore.data.length>=1?<table className="scrollbar" style={{maxHeight:600,height:600}}>
+                case 'FR':return(rootStore.generalStore.data.length>=1?<table className="scrollbar" style={{maxHeight:600,height:600,paddingLeft:550,width:1200,backgroundColor:'#6584ff'}}>
                         <thead>
                         <tr><td>Max:</td><td>Squat - {activeSquat}</td><td className="blank-cell"></td><td className="blank-cell"></td><td className="blank-cell"></td> <td>Bench - {activeBench}</td><td className="blank-cell"></td><td className="blank-cell"></td><td className="blank-cell"></td><td>Deadlift - {activeDL}</td></tr>
                         <tr><td>TM: </td><td>Squat - {parseFloat(0.9*activeSquat)}</td><td className="blank-cell"></td><td className="blank-cell"></td><td className="blank-cell"></td><td>Bench - {parseFloat(0.9*activeBench)}</td><td className="blank-cell"></td><td className="blank-cell"></td><td className="blank-cell"></td><td>Deadlift -{parseFloat(0.9*activeDL)}</td></tr>
@@ -200,7 +181,47 @@ class StrongFactory extends React.Component<IHeaderProps, IHeaderState> {
 
 
                         </tbody>
-                    </table>:null}
+                    </table>:null)
+                case false: return defaultSession;
+                default: return defaultSession;
+            }
+        }
+
+    }
+
+    public render() {
+        const activeDL = rootStore.generalStore.nextGoalInt.deadlift;
+        const activeBench = rootStore.generalStore.nextGoalInt.bench;
+        const activeSquat = rootStore.generalStore.nextGoalInt.squat;
+        const activeOHP = Math.round(0.7*rootStore.generalStore.nextGoalInt.bench);
+
+        return (<div style={{height:'84%',width:'100%',backgroundColor:'#6584ff'}}>
+                <div  onClick={()=>{this.setState({training:!this.state.training,session:false})}} className={`training-select ${this.state.training?'slider':''}`}>
+                    <div>{this.state.training?<div style={{position:'absolute',right:'29%',top:60,height:600,backgroundColor:'#6584ff',borderRadius:12}}>
+                        <div onClick={(e)=>{e.preventDefault(); e.stopPropagation();}}  className="normal" style={{width:'100%'}}>{this.renderSession({deadlift:activeDL,bench:activeBench,squat:activeSquat,ohp:activeOHP})}</div>
+                    </div>:null}</div>
+                    <div style={{cursor:'pointer'}}><h3 style={{marginRight:this.state.training?40:0}}>{this.state.training?'PROGRESSION':''}</h3></div>
+                </div>
+                <div style={{display:'flex',justifyContent:'center'}}><h3 style={{color:'#4264ea'}} className="strongFont"></h3></div>
+                <div style={{display:'flex',justifyContent:'center',height:480}}>
+
+                    <ObservedStrongSurvey toggleGraph={this.toggleGraph.bind(this)} rootStore={this.props.rootStore} setSubmitted={this.setSubmitted.bind(this)} />
+                    {this.state.showGraph?<div>
+                        <section className="dashboard content container fadedshort">
+                            <div className="wrapper">
+                                <LineGraph dataset={rootStore.generalStore.data} submitted={this.state.submitted} />
+                            </div>
+                        </section>
+                    </div>:null}
+                </div>
+                <div style={{display:'flex',justifyContent:'center',height:200,marginTop:100,zIndex:-1}}><div className="scrollbar" style={{overflowY:'auto',maxHeight:600,width:800,fontSize:14,margin:20,padding:20,backgroundColor:'#6584ff'}}>
+                    {rootStore.generalStore.data.length<1?<div><p style={{color:'#fff'}}>
+                            Start by entering your one rep maxes, your training maxes will be calculated at 90% of your true max.</p><p>
+                        Each week, you will increase your training max if you were able to complete all the reps, <p>your new peak set will be suggested for you based on how many reps you achieved.</p>
+                        <p>Your progress is stored in cookies and will be logged on the graph on the right and can be cleared at any time. </p>
+                    </p></div>:null}
+                    {/*TODO LP programme here - maxes up the top*/}
+
                 </div>
                 </div>
 
