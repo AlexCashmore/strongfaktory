@@ -44,18 +44,21 @@ width:90px;height:60px;background-color:#fff;border:1px solid green;color:#282c3
 }
 .slider {
   position:absolute;
-  top:0;
   right:0 !important;
   background-color:#a8d7ea;
   color:#fff;
   transition:0.4s ease;
 }
+.slider-off{
+  transition: .4s ease;
+  right:95%;
+
+}
 .training-select{
   border:2px solid #fff;
-  border-radius: 12px;
+  border-radius:8px;
   width:100%;
-  right:95%;
-  position:absolute;height:84%;width:80;
+  position:absolute;height:84%;
   background-color:#4264ea;writing-mode:vertical-rl;
   text-orientation: mixed;
   color:#fff;

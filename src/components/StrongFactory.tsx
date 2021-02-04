@@ -196,7 +196,7 @@ class StrongFactory extends React.Component<IHeaderProps, IHeaderState> {
         const activeOHP = Math.round(0.7*rootStore.generalStore.nextGoalInt.bench);
 
         return (<div style={{height:'84%',width:'100%',backgroundColor:'#6584ff'}}>
-                <div  onClick={()=>{this.setState({training:!this.state.training,session:false})}} className={`training-select ${this.state.training?'slider':''}`}>
+                <div  onClick={()=>{this.setState({training:!this.state.training,session:false})}} className={`training-select ${this.state.training?'slider':'slider-off'}`}>
                     <div>{this.state.training?<div style={{position:'absolute',right:'29%',top:60,height:600,backgroundColor:'#6584ff',borderRadius:12}}>
                         <div onClick={(e)=>{e.preventDefault(); e.stopPropagation();}}  className="normal" style={{width:'100%'}}>{this.renderSession({deadlift:activeDL,bench:activeBench,squat:activeSquat,ohp:activeOHP})}</div>
                     </div>:null}</div>
