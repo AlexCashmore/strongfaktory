@@ -191,7 +191,6 @@ class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
                         style={{display: 'inline-block',width:80}}
                         type="number"
                         name="reps"
-                        disabled={this.state.loggingMax&&this.state.squatReps}
                         value={this.state.reps||this.state.squatReps}
                         placeholder="x reps"
                         className="signup-form"
@@ -241,7 +240,6 @@ class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
                         style={{display: 'inline-block',width:80}}
                         type="number"
                         name="reps"
-                        disabled={this.state.loggingMax&&this.state.benchReps}
                         value={this.state.reps||this.state.benchReps}
                         placeholder="x reps"
                         className="signup-form fadedshort"
@@ -289,7 +287,6 @@ class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
                         style={{display: 'inline-block',width:80}}
                         type="number"
                         name="reps"
-                        disabled={this.state.loggingMax&&this.state.deadliftReps}
                         value={this.state.reps||this.state.deadliftReps}
                         placeholder="x reps"
                         className="signup-form fadedshort"
