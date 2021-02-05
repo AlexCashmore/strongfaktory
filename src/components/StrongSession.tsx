@@ -91,7 +91,7 @@ class StrongSession extends React.Component<IHeaderProps, IHeaderState> {
             }
             if(ix===this.state.index) {
             if (set.name) {
-            return <div className="fadedshort" style={{color: arr[ix-1]&&(set.name!==arr[ix-1].name)?'#6bf5fa':'#fff',marginTop:150}}>{this.renderSetName(set.name)}
+            return <div style={{color: arr[ix-1]&&(set.name!==arr[ix-1].name)?'#6bf5fa':'#fff',marginTop:150}}>{this.renderSetName(set.name)}
             <div style={{height: 60, width: '100%',fontSize:32}}>{Math.round(set.setWeight*100)/100} x {set.reps}</div>
                 <div style={{marginTop:30,fontSize:9,width:'100%',display:'flex',justifyContent:'space-around'}}>{arr[ix-1]&&<div>{Math.round(arr[ix-1].setWeight*100)/100} x {arr[ix-1].reps}</div>}{`${ix+1} / ${combinedSession.length}`} {arr[ix+1]&&<div>{Math.round(arr[ix+1].setWeight*100)/100} x {arr[ix+1].reps}</div>}</div>
             </div>

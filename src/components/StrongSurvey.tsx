@@ -305,7 +305,7 @@ class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
                 </div>);
             default:
                 if(this.state.squatReps==1&&this.state.benchReps==1&&this.state.deadliftReps==1){
-                    (<div className="fadedshort" ><h3>Your one rep max has been logged. Please use the below training max</h3>
+                    (<div className="fadedshort" ><h3 onClick={()=>{window.location.reload()}}>Your one rep max has been logged. Please use the below training max</h3>
                         <br/>
                         <div className="fadedshort">
                             {this.state.squat&&<>Squat: {this.state.squat}</>}
@@ -324,7 +324,7 @@ class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
 
                         </div></div>)
                 }
-                return(<div className="fadedshort" ><h3 style={{color:'pink'}}>Your work has been logged. Thank you.</h3>
+                return(<div className="fadedshort" ><h3 onClick={()=>{window.location.reload()}} style={{color:'pink'}}>Your work has been logged. Thank you.</h3>
                 <br/></div>)
 
         }

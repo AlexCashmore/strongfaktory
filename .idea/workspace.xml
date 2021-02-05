@@ -5,7 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StrongFactory.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StrongFactory.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StrongSession.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StrongSession.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/StrongSurvey.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StrongSurvey.tsx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -86,7 +86,8 @@
       <workItem from="1611560850647" duration="735000" />
       <workItem from="1611691702049" duration="58000" />
       <workItem from="1612421015241" duration="6170000" />
-      <workItem from="1612468808743" duration="1795000" />
+      <workItem from="1612468808743" duration="2529000" />
+      <workItem from="1612493320072" duration="2057000" />
     </task>
     <servers />
   </component>
