@@ -63,6 +63,27 @@ width:90px;height:60px;background-color:#fff;border:1px solid green;color:#282c3
   text-orientation: mixed;
   color:#fff;
 }
+.g-slider {
+  position:absolute;
+  top:10px !important;
+  background-color:#a8d7ea;
+  color:#fff;
+  transition:0.4s ease;
+}
+.g-slider-off{
+  transition: .4s ease;
+  top:100%;
+
+}
+.g-select{
+  border:2px solid #fff;
+  border-radius:8px;
+  width:600px;
+  left:-10px;
+  position:absolute;height:84%;
+  background-color:#4264ea;
+  color:#fff;
+}
 .normal{
   writing-mode:initial;
   text-orientation: initial;

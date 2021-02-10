@@ -1,6 +1,7 @@
 import { action, observable } from 'mobx';
 import { rootStore } from './Stores';
 import cookie from 'js-cookie';
+import {persist} from "mobx-persist";
 
 
 export default class GeneralStore {
@@ -9,10 +10,10 @@ export default class GeneralStore {
         this.rootStore = rootStore;
     }
 
-    @observable username = 'User'
-    @observable data = typeof cookie.get('data')!=="undefined"?JSON.parse(cookie.get('data')):[];
-    @observable nextGoal = typeof cookie.get('nextGoal')!=="undefined"?JSON.parse(cookie.get('nextGoal')):{};
-    @observable nextGoalInt = typeof cookie.get('next')!=="undefined"?JSON.parse(cookie.get('next')):{};
+    @observable @persist username =  typeof cookie.get('username')!=="undefined"?cookie.get('username'):'User';
+    @observable @persist data = typeof cookie.get('data')!=="undefined"?JSON.parse(cookie.get('data')):[];
+    @observable @persist nextGoal = typeof cookie.get('nextGoal')!=="undefined"?JSON.parse(cookie.get('nextGoal')):{};
+    @observable @persist nextGoalInt = typeof cookie.get('next')!=="undefined"?JSON.parse(cookie.get('next')):{};
     @observable sessionMultiplierSet = {BenchV:[{multiplier:0.65,reps:8},{multiplier:0.75,reps:6},{multiplier:0.85,reps:4},{multiplier:0.85,reps:4} ,{multiplier:0.85,reps:4} ,{multiplier:0.8,reps:5},{multiplier:0.75,reps:6},{multiplier:0.7,reps:7},{multiplier:0.6,reps:8}],
         OHPV:[{multiplier:0.5,reps:6},{multiplier:0.6,reps:5} ,{multiplier:0.7,reps:3},{multiplier:0.7,reps:5},{multiplier:0.7,reps:7},{multiplier:0.7,reps:4},{multiplier:0.7,reps:6},{multiplier:0.7,reps:8}],
 

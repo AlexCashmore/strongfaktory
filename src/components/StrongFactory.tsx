@@ -23,7 +23,7 @@ interface IHeaderProps {
 class StrongFactory extends React.Component<IHeaderProps, IHeaderState> {
     constructor(props: IHeaderProps, state:IHeaderState) {
         super(props);
-        this.state = { username: '',submitted:false,showGraph:false,training:false };
+        this.state = { username: rootStore.generalStore.username,submitted:false,showGraph:false,training:false };
     }
     toggleGraph(){
         this.setState({showGraph:!this.state.showGraph})
@@ -206,24 +206,23 @@ class StrongFactory extends React.Component<IHeaderProps, IHeaderState> {
                 <div style={{display:'flex',justifyContent:'center',height:480}}>
 
                     <ObservedStrongSurvey toggleGraph={this.toggleGraph.bind(this)} rootStore={this.props.rootStore} setSubmitted={this.setSubmitted.bind(this)} />
-                    {this.state.showGraph?<div>
-                        <section className="dashboard content container fadedshort">
-                            <div className="wrapper">
-                                <LineGraph dataset={rootStore.generalStore.data} submitted={this.state.submitted} />
-                            </div>
-                        </section>
-                    </div>:null}
+
                 </div>
-                <div style={{display:'flex',justifyContent:'center',height:200,marginTop:100,zIndex:-1}}><div className="scrollbar" style={{overflowY:'auto',maxHeight:600,width:800,fontSize:14,margin:20,padding:20,backgroundColor:'#6584ff'}}>
-                    {rootStore.generalStore.data.length<1?<div><p style={{color:'#fff'}}>
+            {rootStore.generalStore.data.length<1?<div style={{display:'flex',justifyContent:'center',height:200,marginTop:100,zIndex:-1}}><div className="scrollbar" style={{overflowY:'auto',maxHeight:600,width:800,fontSize:14,margin:20,padding:20,backgroundColor:'#6584ff'}}>
+                   <div><p style={{color:'#fff'}}>
                             Start by entering your one rep maxes, your training maxes will be calculated at 90% of your true max.</p><p style={{color:'#fff'}}>
                         Each week, you will increase your training max if you were able to complete all the reps, <p>your new peak set will be suggested for you based on how many reps you achieved.</p>
                         <p style={{color:'#fff'}}>Your progress is stored in cookies and will be logged on the graph on the right and can be cleared at any time. </p>
-                    </p></div>:null}
+                    </p></div>
                     {/*TODO LP programme here - maxes up the top*/}
 
                 </div>
+                </div>:
+            <div onClick={()=>{this.toggleGraph()}} className={`g-select ${this.state.showGraph?'g-slider':'g-slider-off'}`}>
+                <h3 style={{marginRight:'30%'}}>GRAPH</h3>
+                <div style={{marginTop:100}}>                                <LineGraph dataset={rootStore.generalStore.data} submitted={this.state.submitted} />
                 </div>
+            </div>}
 
             </div>
         );

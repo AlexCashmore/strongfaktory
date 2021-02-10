@@ -114,7 +114,7 @@ class Daily extends Component {
             };
 
             return (
-                <section style={{width:800,height:800}}>
+                <section style={{width:600,height:300,backgroundColor:'#a8d7ea',borderRadius:12}}>
                     <div className="wrapper">
                         <div className="container">
                             <div style={{ margin: 15 }}>

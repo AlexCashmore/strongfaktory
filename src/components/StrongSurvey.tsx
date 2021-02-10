@@ -19,7 +19,8 @@ export interface IHeaderState {
     squatReps:any;
     deadliftReps:any;
     loggingMax:any;
-    showGraph:any,
+    showGraph:any;
+    username:any;
 }
 interface IHeaderProps {
     generalStore:any;
@@ -31,7 +32,7 @@ interface IHeaderProps {
 class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
     constructor(props: IHeaderProps, state:IHeaderState) {
         super(props);
-        this.state = { showGraph:false,reps:0,activeQuestion:'squat',squat:'',bench:'',deadlift:'',submitted:rootStore.generalStore.data.length>=1,
+        this.state = { username:rootStore.generalStore.username,showGraph:false,reps:0,activeQuestion:'squat',squat:'',bench:'',deadlift:'',submitted:rootStore.generalStore.data.length>=1,
             loggingMax:rootStore.generalStore.data.length<1,
         squatReps:rootStore.generalStore.data.length>=1?0:1,deadliftReps:rootStore.generalStore.data.length>=1?0:1,benchReps:rootStore.generalStore.data.length>=1?0:1,};
     }
@@ -102,6 +103,11 @@ class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
             deadlift:e.target.value
         });
     }
+    handleSurveyChangeName(e){
+        this.setState({
+            username:e.target.value
+        });
+    }
 /*    submitDataToCookies(data){
         const prevData = cookie.get('data')
         console.log('prevData',typeof prevData,prevData,data);
@@ -133,6 +139,8 @@ class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
         const prevData = cookie.get('data')
         console.log('prevData',typeof prevData,prevData,data);
         if(typeof prevData !== 'undefined'){
+            rootStore.generalStore.setUsername(this.state.username)
+            cookie.set('username',this.state.username);
             const prevDataSet = JSON.parse(prevData)
             const addDay = prevDataSet.length
             prevDataSet.push({data:{squat:data.squat,squatReps:data.squatReps,deadlift:data.deadlift,deadliftReps:data.deadliftReps,bench:data.bench,benchReps:data.benchReps},timestamp:moment().format('LL')});
@@ -148,6 +156,8 @@ class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
             rootStore.generalStore.setData([{data:data,timestamp:moment().format('LL')}]);
             rootStore.generalStore.setNextGoal(nextGoal);
             rootStore.generalStore.setNextGoalInt(nextGoalInt);
+            rootStore.generalStore.setUsername(this.state.username)
+            cookie.set('username',this.state.username);
             this.setState({submitted:true})
         }
 
@@ -331,11 +341,24 @@ class StrongSurvey extends React.Component<IHeaderProps, IHeaderState> {
     }
 
     public render() {
-        console.log(rootStore.generalStore.data)
+        console.log(rootStore.generalStore.username,this.state.username,'!!');
         return (<div style={{height:'100%',width:'100%',backgroundColor:"transparent"}} className="fadedshort">
                 <div style={{display:'flex'}}>
                     <div style={{width:350,padding:'0px 0px 0px 30px',margin:0,height:550,backgroundColor:'#6584ff',borderRadius:12,marginBottom:50}}>
-                        <p style={{height:40,color:'#fff'}}>{this.state.submitted?`Log today's training session`:`Submit Your One Rep Max`}</p>
+                        <input
+                            style={{display: 'inline-block',width:200}}
+                            type="text"
+                            name="User"
+                            value={this.state.username}
+                            placeholder="Name..."
+                            className="signup-form fadedshort"
+                            onChange={(e) => {
+                                this.handleSurveyChangeName(e)
+                            }}
+                            onKeyPress={(event) => {
+                            }}
+                        />
+                        <p style={{height:40,color:'#fff'}}>{this.state.submitted?`Hi, ${this.state.username||'User'}`:`Submit Your One Rep Max`}</p>
                         {rootStore.generalStore.nextGoal.squat?<div style={{color:'white'}}>
                             <h3 style={{color:'white',margin:0}}>{rootStore.generalStore.data.length===1?'Your programme has been generated below':'Try for these numbers next week'}</h3>
                             <p><b>S</b>{rootStore.generalStore.nextGoal.squat}  <b style={{marginLeft:10}}>B</b>{rootStore.generalStore.nextGoal.bench} <b style={{marginLeft:10}}>D</b>{rootStore.generalStore.nextGoal.deadlift}</p>
